@@ -3,14 +3,19 @@ package com.example.fragmentrecyclerbound.Screens
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragmentrecyclerbound.R
+import com.example.fragmentrecyclerbound.data.Person
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class HomeAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class HomeAdapter(viewModel: HomeViewModel):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var people: List<Person> = ArrayList()
+    private val viewmodel:HomeViewModel=viewModel
+
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return HomeViewHolder(
@@ -32,7 +37,8 @@ class HomeAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is HomeViewHolder -> holder.bind(people.get(position))
+     //       is HomeViewHolder -> holder.bind(viewmodel,people.get(position))
+            is HomeViewHolder -> holder.bind(viewmodel,position)
         }
     }
 }
@@ -46,8 +52,14 @@ class HomeAdapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val confirm=itemView.confirm
 
 
-        fun bind(person: Person){
-            myName.setText(person.myName)
-            myPhoto.setImageResource(person.myphoto)
+        fun bind(viewModel: HomeViewModel,position: Int){
+
+
+            myName.setText(viewModel.people.get(position).myName)
+
+
+
+            confirm.setOnClickListener{myName.setText(viewModel.anon)}
+            //myPhoto.setImageResource(person.myphoto)
         }
     }

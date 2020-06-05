@@ -10,6 +10,7 @@ class MainActivityViewModel: ViewModel(){
 
     init {
         Log.i("ViewModel","ViewModel Created!")
+        //An example of a value that will automatically be set using the bound variable in layout resource
         heading.value="Demote"
 
     }

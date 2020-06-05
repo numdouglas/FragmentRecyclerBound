@@ -23,8 +23,4 @@ class MainActivity : AppCompatActivity() {
             androidx.lifecycle.Observer { titlus -> binding.nomNom.text = viewModel.getHeading() })
     }
 }
-
-
-
-
 //data class Headings(val name:String="")

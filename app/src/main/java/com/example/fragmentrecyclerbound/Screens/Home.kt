@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.fragmentrecyclerbound.R
+import com.example.fragmentrecyclerbound.data.DataSource
 import com.example.fragmentrecyclerbound.databinding.HomeBinding
-import kotlinx.android.synthetic.main.home.*
-
 
 class Home : androidx.fragment.app.Fragment(){
 
@@ -32,9 +31,9 @@ class Home : androidx.fragment.app.Fragment(){
 
         binding=DataBindingUtil.inflate(inflater, R.layout.home,container,false)
 
-        //binding.button.setOnClickListener{viewModel.setNewWord()}
+/*        binding.button.setOnClickListener{viewModel.setNewWord()}
 
-        //viewModel.word.observe(this, Observer { wordo -> binding.title.text=wordo })
+        viewModel.word.observe(this, Observer { wordo -> binding..text=wordo })*/
 
         initRecyclerView()
 
@@ -47,14 +46,14 @@ class Home : androidx.fragment.app.Fragment(){
 
 
     private fun addDataSet(){
-        val data =DataSource.createPeopleData()
+        val data = DataSource.createPeopleData()
         homeAdapter.submitList(data)
     }
 
     private fun initRecyclerView(){
         binding.recycler.apply {
             layoutManager=LinearLayoutManager(this@Home.context)
-            homeAdapter= HomeAdapter()
+            homeAdapter= HomeAdapter(viewModel)
             adapter=homeAdapter
         }
     }

@@ -1,19 +1,16 @@
 package com.example.fragmentrecyclerbound.Screens
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fragmentrecyclerbound.data.DataSource
+import com.example.fragmentrecyclerbound.data.Person
 
 
 class HomeViewModel:ViewModel(){
 
-    var word=MutableLiveData<String>()
+    val people:ArrayList<Person> =DataSource.createPeopleData()
+
+    val anon:String="Anonymous"
 
 
-    init {
-        word.value="Keynes"
-    }
 
-    fun setNewWord(){
-        word.value="Marinus"
-    }
 }
